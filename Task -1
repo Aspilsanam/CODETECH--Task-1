@@ -1,0 +1,15 @@
+entity mux_4to1 is
+    Port ( I : in  STD_LOGIC_VECTOR (3 downto 0);
+           Y : out  STD_LOGIC;
+           S : in  STD_LOGIC_VECTOR (1 downto 0));
+end mux_4to1;
+
+architecture Behavioral of mux_4to1 is
+
+begin
+Y<=  ((not S(0)) and (not S(1)) and I(0))
+	or ((not S(0)) and S(1) and I(2))
+	or (S(0) and (not S(1)) and I(1))
+	or (S(0) and S(1) and I(3));
+
+end Behavioral;
