@@ -1,0 +1,56 @@
+COMPONENT mux_4to1
+    PORT(
+         I : IN  std_logic_vector(3 downto 0);
+         Y : OUT  std_logic;
+         S : IN  std_logic_vector(1 downto 0)
+        );
+    END COMPONENT;
+    
+
+   --Inputs
+   signal I : std_logic_vector(3 downto 0) := (others => '0');
+   signal S : std_logic_vector(1 downto 0) := (others => '0');
+
+ 	--Outputs
+   signal Y : std_logic;
+   -- No clocks detected in port list. Replace <clock> below with 
+   -- appropriate port name 
+ 
+ 
+BEGIN
+ 
+	-- Instantiate the Unit Under Test (UUT)
+   uut: mux_4to1 PORT MAP (
+          I => I,
+          Y => Y,
+          S => S
+        );
+
+   -- Stimulus process
+   stim_proc: process
+   begin		
+      
+		S(0)<='0';
+		S(1)<='0';
+		I(0)<='1';
+      wait for 100 ns;	
+		
+		S(0)<='1';
+		S(1)<='0';
+		I(1)<='1';
+      wait for 100 ns;
+		
+		S(0)<='0';
+		S(1)<='1';
+		I(2)<='1';
+      wait for 100 ns;
+		
+		S(0)<='1';
+		S(1)<='1';
+		I(3)<='1';
+      wait for 100 ns;
+
+      wait;
+   end process;
+
+END;
